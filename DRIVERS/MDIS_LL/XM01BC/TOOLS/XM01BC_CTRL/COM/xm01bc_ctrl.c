@@ -309,14 +309,14 @@ int main( int argc, char *argv[])
 			}
 
 			/* get lower voltage limit */
-			if ((M_getstat(G_Path, XM01BC_VOLT_LOW, &G_VoltCh[ch].low)) < 0)
+			if ((M_getstat(G_Path, XM01BC_VOLT_LOW, (int32 *)&G_VoltCh[ch].low)) < 0)
 			{
 				PrintMdisError("getstat XM01BC_VOLT_LOW");
 				goto abort;
 			}
 
 			/* get upper voltage limit */
-			if ((M_getstat(G_Path, XM01BC_VOLT_HIGH, &G_VoltCh[ch].high)) < 0)
+			if ((M_getstat(G_Path, XM01BC_VOLT_HIGH, (int32 *)&G_VoltCh[ch].high)) < 0)
 			{
 				PrintMdisError("getstat XM01BC_VOLT_HIGH");
 				goto abort;

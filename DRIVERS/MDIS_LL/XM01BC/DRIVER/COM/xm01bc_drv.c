@@ -314,13 +314,13 @@ static int32 XM01BC_Init(
 										&llHdl->hwVariant ) ))
 		return( Cleanup(llHdl,error) );
 
-    /* If hardware variant could not be read */
-    if( llHdl->hwVariant == CPUBCI_HW_VAR_INVALID )
-        return( Cleanup(llHdl,ERR_LL_READ) );
+	/* If hardware variant could not be read */
+	if( llHdl->hwVariant == CPUBCI_HW_VAR_INVALID )
+		return( Cleanup(llHdl,ERR_LL_READ) );
 
-    /* If hardware variant is XM01 with first revision firmware */
-    if( llHdl->hwVariant == CPUBCI_HW_VAR_XM01_1 )
-        llHdl->fwRevFirst = TRUE;
+	/* If hardware variant is XM01 with first revision firmware */
+	if( llHdl->hwVariant == CPUBCI_HW_VAR_XM01_1 )
+		llHdl->fwRevFirst = TRUE;
 
 	/* Get and store firmware revision */
 	for( n=0; n<CPUBCI_GETREV_NUM; n++ ) {
