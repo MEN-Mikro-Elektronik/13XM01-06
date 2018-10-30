@@ -13,30 +13,24 @@
  *    \switches  _ONE_NAMESPACE_PER_DRIVER_
  *               _LL_DRV_
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: xm01bc_drv.h,v $
- * Revision 3.3  2009/09/04 11:57:42  MRoth
- * R: Porting to MDIS5, new MDIS_API and men_typs
- * M: for backward compatibility to MDIS4 optionally define new types
- *
- * Revision 3.2  2009/02/06 15:46:24  MSoehnlein
- * R:1. Added MM1/ XM2/ F19 Support
- * M:1.a) added "Hardware ID" query
- *     b) added "Number of Supervised Voltages" query
- *     c) added "Number of Error Counters" query
- *     d) added "RESET_IN Blocking Mode" query
- *     e) increased number of error counters to 31
- *     f) increased number of supervised voltages to 8
- *     g) renamed Board Controller Interface (BCI) from XM01BCI to CPUBCI
- *
- * Revision 3.1  2008/10/31 17:13:41  MSoehnlein
- * Initial Revision
- *
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2008 by MEN Mikro Elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #ifndef _XM01BC_DRV_H
 #define _XM01BC_DRV_H

@@ -12,40 +12,24 @@
  *
  *     \switches _ONE_NAMESPACE_PER_DRIVER_, XM01BC_SW
  */
- /*-------------------------------[ History ]--------------------------------
- *
- * $Log: xm01bc_drv.c,v $
- * Revision 1.4  2015/03/11 18:15:47  ts
- * R: operating hours displayed were only max. 255 hours
- * M: fixed GetStat OPHRS_CNT to use ReadWordData
- *
- * Revision 1.3  2009/09/04 11:57:35  MRoth
- * R: Porting to MIDS5
- * M: a) added support for 64bit (Set/GetStat prototypes)
- *    b) added casts
- *    c) changed location of xm01bc_drv.h include
- *
- * Revision 1.2  2009/02/06 15:46:13  MSoehnlein
- * R:1. Added MM1/ XM2/ F19 Support
- *   2. MDIS5 porting
- * M:1.a) added "Hardware ID" query
- *     b) added "Number of Supervised Voltages" query
- *     c) added "Number of Error Counters" query
- *     d) added "RESET_IN Blocking Mode" query
- *     e) increased number of error counters to 31
- *     f) increased number of supervised voltages to 8
- *     g) renamed Board Controller Interface (BCI) from XM01BCI to CPUBCI
- *   2.a) Changed parameter of XM01BC_SetStat() and XM01BC_GetStat()
- *          from "int32 value" to "INT32_OR_64 value32_or_64"
- *          and "int32 *valueP" to "INT32_OR_64 *value32_or_64P"
- *
- * Revision 1.1  2008/10/31 17:13:31  MSoehnlein
- * Initial Revision
- *
- *
+ /*
  *---------------------------------------------------------------------------
  * (c) Copyright 2008 by MEN Mikro Elektronik GmbH, Nuernberg, Germany
  ****************************************************************************/
+/*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #define _NO_LL_HANDLE		/* ll_defs.h: don't define LL_HANDLE struct */
 
