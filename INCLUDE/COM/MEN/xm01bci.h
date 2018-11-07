@@ -10,32 +10,7 @@
  *                      
  *     Switches: -
  */
-/*-------------------------------[ History ]---------------------------------
- *
- * $Log: xm01bci.h,v $
- * Revision 3.4  2014/04/07 15:31:20  dpfeuffer
- * R: doxygen documentation groups for 13bl50w70 sw required
- * M: \defgroup _XM01BCI_PWR_FLAGS and _XM01BCI_LAST_ERRORS added
- *
- * Revision 3.3  2009/02/06 15:46:28  MSoehnlein
- * R:1. Added MM1/ XM2/ F19 Support
- * M:1.a) added "Hardware ID" query
- *     b) added "Number of Supervised Voltages" query
- *     c) added "Number of Error Counters" query
- *     d) added "RESET_IN Blocking Mode" query
- *     e) increased number of error counters to 31
- *     f) increased number of supervised voltages to 8
- *     g) renamed Board Controller Interface (BCI) from XM01BCI to CPUBCI
- *   2.a) Changed parameter of XM01BC_SetStat() and XM01BC_GetStat()
- *          from "int32 value" to "INT32_OR_64 value32_or_64"
- *          and "int32 *valueP" to "INT32_OR_64 *value32_or_64P"
- *
- * Revision 3.2  2008/08/01 09:46:39  MSöhnlein
- * Completed initial implementation
- *
- * Revision 3.1  2008/04/29 10:59:10  MSöhnlein
- * Initial Revision
- *
+/*
  *---------------------------------------------------------------------------
  * (c) Copyright 2008 by MEN Mikro Elektronik GmbH, Nuremberg, Germany 
  ****************************************************************************/

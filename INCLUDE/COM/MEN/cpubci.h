@@ -10,72 +10,7 @@
  *                      
  *     Switches: -
  */
-/*-------------------------------[ History ]---------------------------------
- *
- * $Log: cpubci.h,v $
- * Revision 3.15  2014/11/25 15:26:17  ts
- * R: new models F23P and A22 were introduced
- * M: added hardware IDs 0x0014 and 0x0015 for those boards
- *
- * Revision 3.14  2014/06/12 09:06:47  ts
- * R: Hardware ID for SC25 was missing
- * M: added ID 0x0013 for SC25
- *
- * Revision 3.13  2014/04/02 10:23:42  ts
- * R: HW ID for CB70 added ( = 0x0012 )
- *
- * Revision 3.12  2013/11/13 12:56:27  ts
- * R: hwVariants enumeration was not up to date
- * M: added Variants XM3 - SC27
- *
- * Revision 3.11  2012/02/17 14:20:47  MSoehnlein
- *   R: 1.Cosmetics
- *   M: 1.a)Changed comments
- *        b)Changed formatting
- *
- * Revision 3.10  2011/03/22 13:39:58  MSoehnlein
- *   R: 1. Added Software Cold Reset with RTC Reset Request
- *      2. Code optimization
- *   M: 1. Added new SMBus Command CPUBCI_SW_RTC_RESET
- *      2. a) Replaced single defines by enums
- *         b) Reformatted Code
- *
- * Revision 3.9  2011/03/03 09:28:51  MSoehnlein
- *   R: New supported hardware
- *   M: Added hardware variant constants for F11S, F21 and MM2
- *
- * Revision 3.8  2010/12/23 14:04:16  MSoehnlein
- *   R: New supported hardware
- *   M: Added hardware variant constants for SC21
- *
- * Revision 3.7  2010/11/26 18:25:37  MSoehnlein
- *   R: External Watchdog Arming state cannot be determined
- *   M: Added SMBus command "Get Watchdog Arming State"
- *
- * Revision 3.6  2010/09/22 12:49:16  MSoehnlein
- *     R: Missing support for typedef enum member names in PICC
- *     M: Added defines of Hardware variants and Resume Modes for PICC
- *
- * Revision 3.5  2010/06/09 12:20:12  MSoehnlein
- * R: New minimum watchdog timeout
- * M: Changed minimum watchdog timeout to 100ms
- *
- * Revision 3.4  2010/04/09 15:50:26  MSoehnlein
- * R: Support for G20 and CPCI-S
- * M: Added new SMBus commands and enumerations
- *
- * Revision 3.3  2009/09/21 11:38:53  MSoehnlein
- * R: Imprecise comment
- * M: Changed comment
- *
- * Revision 3.2  2009/08/25 15:48:09  MSoehnlein
- * R: Added SATA_DET control
- * M: Added CPUBCI_STAT_DET_CTRL SMBus command
- *
- * Revision 3.1  2009/02/06 15:46:26  MSoehnlein
- * Initial Revision
- *
- *
+/*
  *---------------------------------------------------------------------------
  * (c) Copyright 2009-2010 by MEN Mikro Elektronik GmbH, Nuremberg, Germany 
  ****************************************************************************/
