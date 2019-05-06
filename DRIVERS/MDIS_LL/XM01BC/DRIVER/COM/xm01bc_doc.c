@@ -151,6 +151,6 @@
 /** \example xm01bc_min.dsc */
 /** \example xm01bc_max.dsc */
 
-/*! \page dummy
+/*! \page xm01bcdummy MEN logo
   \menimages
 */
