@@ -5,7 +5,7 @@
 	<date>2015-03-12</date>
 	<revision>1.5</revision>
 	<docroot>DRIVERS/MDIS_LL/XM01BC/DOC/html/index.html</docroot>
-	<!-- Models	-->
+	<!-- Models -->
 	<modellist>
 		<model>
 			<hwname>XM01BC</hwname>
@@ -37,7 +37,7 @@
 			</settinglist>
 		</model>
 	</modellist>
-	<!-- Global	software modules -->
+	<!-- Global software modules -->
 	<swmodulelist>
 		<swmodule swap="false">
 			<name>xm01bc</name>
