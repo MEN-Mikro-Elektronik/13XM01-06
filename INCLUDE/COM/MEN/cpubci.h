@@ -3,8 +3,6 @@
  *        \file  cpubci.h
  *
  *      \author  matthias.soehnlein@men.de
- *        $Date: 2014/11/25 15:26:17 $
- *    $Revision: 3.15 $
  * 
  *       \brief  Header file for CPU board-controller firmware interface
  *                      

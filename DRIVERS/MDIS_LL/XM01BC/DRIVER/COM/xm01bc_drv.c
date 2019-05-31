@@ -3,8 +3,6 @@
  *        \file  xm01bc_drv.c
  *
  *      \author  matthias.soehnlein@men.de
- *        $Date: 2015/03/11 18:15:47 $
- *    $Revision: 1.4 $
  *
  *      \brief   Low-level driver for XM01BC device on SMBus
  *

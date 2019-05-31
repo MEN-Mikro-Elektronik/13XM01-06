@@ -3,8 +3,6 @@
  *        \file  xm01bci.h
  *
  *      \author  matthias.soehnlein@men.de
- *        $Date: 2014/04/07 15:31:20 $
- *    $Revision: 3.4 $
  * 
  *  	 \brief  Header file for XM01 board-controller firmware interface
  *                      

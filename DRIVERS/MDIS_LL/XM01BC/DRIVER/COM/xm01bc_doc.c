@@ -3,8 +3,6 @@
  *        \file  xm01bc_doc.c
  *
  *      \author  matthias.soehnlein@men.de
- *        $Date: 2009/09/04 11:57:38 $
- *    $Revision: 1.3 $
  *
  *      \brief   User documentation for XM01BC device driver
  *

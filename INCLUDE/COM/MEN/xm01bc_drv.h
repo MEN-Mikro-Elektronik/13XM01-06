@@ -3,8 +3,6 @@
  *        \file  xm01bc_drv.h
  *
  *      \author  matthias.soehnlein@men.de
- *        $Date: 2009/09/04 11:57:42 $
- *    $Revision: 3.3 $
  *
  *       \brief  Header file for XM01BC driver containing
  *               XM01BC specific status codes and

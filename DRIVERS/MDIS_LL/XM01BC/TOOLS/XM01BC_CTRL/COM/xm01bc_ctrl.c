@@ -6,8 +6,6 @@
 /*!
  *         \file xm01bc_ctrl.c
  *       \author matthias.soehnlein@men.de
- *        $Date: 2009/09/04 11:57:40 $
- *    $Revision: 1.3 $
  *
  *        \brief Tool to control XM01BC PIC
  *
@@ -41,6 +39,8 @@
 #include <MEN/mdis_api.h>
 #include <MEN/mdis_err.h>
 #include <MEN/xm01bc_drv.h>
+
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
 
 /*--------------------------------------+
 |   DEFINES                             |
@@ -108,7 +108,7 @@ static void usage(void)
 	printf("\n");
 	printf("  -q          exit QM-Mode (for production tests only)   \n");
 	printf("\n");
-	printf("(c) 2008 by MEN mikro elektronik GmbH                    \n");
+	printf("Copyright (c) 2008-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 	printf("\n");
 	printf("\n");
 }
