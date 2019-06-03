@@ -102,6 +102,8 @@ typedef struct {
 #include <MEN/ll_entry.h>   /* low-level driver jump table  */
 #include <MEN/xm01bc_drv.h>	/* XM01BC driver header file */
 
+static const char IdentString[]=MENT_XSTR(MAK_REVISION);
+
 /*-----------------------------------------+
 |  PROTOTYPES                              |
 +-----------------------------------------*/
@@ -1620,8 +1622,7 @@ static int32 XM01BC_Info(
  */
 static char* Ident( void )
 {
-    return( "XM01BC - XM01BC low-level driver: "
-            "$Id: xm01bc_drv.c,v 1.4 2015/03/11 18:15:47 ts Exp $" );
+    return( (char*) IdentString );
 }
 
 /********************************* Cleanup *********************************/
