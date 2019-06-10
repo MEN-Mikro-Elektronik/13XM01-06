@@ -2,8 +2,8 @@
 <package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="packagedesc.xsd">
 	<name>13xm0106</name>
 	<description>MDIS5 XM1 driver package</description>
-	<date>2015-03-12</date>
-	<revision>1.5</revision>
+	<date>2019-06-07</date>
+	<revision>13XM01-06_01_08-9-gdd95571</revision>
 	<docroot>DRIVERS/MDIS_LL/XM01BC/DOC/html/index.html</docroot>
 	<!-- Models -->
 	<modellist>
