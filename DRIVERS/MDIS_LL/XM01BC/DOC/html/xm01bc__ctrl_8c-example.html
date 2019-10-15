@@ -54,6 +54,8 @@
 <span class="preprocessor">#include &lt;MEN/mdis_err.h&gt;</span>
 <span class="preprocessor">#include &lt;<a class="code" href="xm01bc__drv_8h.html">MEN/xm01bc_drv.h</a>&gt;</span>
 
+<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> IdentString[]=MENT_XSTR(MAK_REVISION);
+
 <span class="comment">/*--------------------------------------+</span>
 <span class="comment">|   DEFINES                             |</span>
 <span class="comment">+--------------------------------------*/</span>
@@ -66,19 +68,19 @@
 <span class="keyword">static</span> <a class="code" href="xm01bc__drv_8h.html#a72">MDIS_PATH</a> G_Path;
 
 <span class="keyword">static</span> <span class="keyword">struct </span>{
-    u_int32 <a class="code" href="xm01bc__ctrl_8c.html#a3">low</a>;
-    u_int32 <a class="code" href="xm01bc__ctrl_8c.html#a4">high</a>;
+    u_int32 <a class="code" href="xm01bc__ctrl_8c.html#a4">low</a>;
+    u_int32 <a class="code" href="xm01bc__ctrl_8c.html#a5">high</a>;
 } G_VoltCh[<a class="code" href="xm01bc__ctrl_8c.html#a1">MAX_VOLT_CH</a>];    <span class="comment">/* volt channel limits */</span>
 
 <span class="comment">/*--------------------------------------+</span>
 <span class="comment">|   PROTOTYPES                          |</span>
 <span class="comment">+--------------------------------------*/</span>
-<span class="keyword">static</span> <span class="keywordtype">void</span> <a name="a14"></a><a class="code" href="xm01bc__ctrl_8c.html#a6">usage</a>(<span class="keywordtype">void</span>);
-<span class="keyword">static</span> <span class="keywordtype">void</span> <a name="a15"></a><a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="keywordtype">char</span> *info);
-<span class="keyword">static</span> <span class="keywordtype">void</span> <a name="a16"></a><a class="code" href="xm01bc__ctrl_8c.html#a8">PrintUosError</a>(<span class="keywordtype">char</span> *info);
+<span class="keyword">static</span> <span class="keywordtype">void</span> <a name="a14"></a><a class="code" href="xm01bc__ctrl_8c.html#a7">usage</a>(<span class="keywordtype">void</span>);
+<span class="keyword">static</span> <span class="keywordtype">void</span> <a name="a15"></a><a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="keywordtype">char</span> *info);
+<span class="keyword">static</span> <span class="keywordtype">void</span> <a name="a16"></a><a class="code" href="xm01bc__ctrl_8c.html#a9">PrintUosError</a>(<span class="keywordtype">char</span> *info);
 
 <span class="comment">/********************************* usage ***********************************/</span>
-<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="xm01bc__ctrl_8c.html#a6">usage</a>(<span class="keywordtype">void</span>)
+<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="xm01bc__ctrl_8c.html#a7">usage</a>(<span class="keywordtype">void</span>)
 {
     printf(<span class="stringliteral">"Usage: xm01bc_ctrl [&lt;opts&gt;] &lt;device&gt; [&lt;opts&gt;]            \n"</span>);
     printf(<span class="stringliteral">"\n"</span>);
@@ -118,13 +120,13 @@
     printf(<span class="stringliteral">"\n"</span>);
     printf(<span class="stringliteral">"  -q          exit QM-Mode (for production tests only)   \n"</span>);
     printf(<span class="stringliteral">"\n"</span>);
-    printf(<span class="stringliteral">"(c) 2008 by MEN mikro elektronik GmbH                    \n"</span>);
+    printf(<span class="stringliteral">"Copyright (c) 2008-2019, MEN Mikro Elektronik GmbH\n%s\n"</span>, IdentString);
     printf(<span class="stringliteral">"\n"</span>);
     printf(<span class="stringliteral">"\n"</span>);
 }
 
 <span class="comment">/********************************* main ************************************/</span>
-<span class="keywordtype">int</span> <a name="a17"></a><a class="code" href="xm01bc__ctrl_8c.html#a9">main</a>( <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
+<span class="keywordtype">int</span> <a name="a17"></a><a class="code" href="xm01bc__ctrl_8c.html#a10">main</a>( <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[])
 {
     <span class="keywordtype">char</span>    *device,*str,*errstr,buf[40];
     int32   volt, superv, swr, scr, err, clear, frev, frev_ext;
@@ -150,7 +152,7 @@
 
     <span class="keywordflow">if</span>( UTL_TSTOPT(<span class="stringliteral">"?"</span>) )                       <span class="comment">/* help requested ? */</span>
     {
-        <a class="code" href="xm01bc__ctrl_8c.html#a6">usage</a>();
+        <a class="code" href="xm01bc__ctrl_8c.html#a7">usage</a>();
         <span class="keywordflow">return</span>(1);
     }
 
@@ -166,7 +168,7 @@
 
     <span class="keywordflow">if</span>( !device || argc&lt;3 )
     {
-        <a class="code" href="xm01bc__ctrl_8c.html#a6">usage</a>();
+        <a class="code" href="xm01bc__ctrl_8c.html#a7">usage</a>();
         <span class="keywordflow">return</span>(1);
     }
 
@@ -265,7 +267,7 @@
 <span class="comment">    +--------------------*/</span>
     <span class="keywordflow">if</span>( (G_Path = <a name="a18"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a4">M_open</a>(device)) &lt; 0)
     {
-        <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"open"</span>);
+        <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"open"</span>);
         <span class="keywordflow">return</span>(1);
     }
 
@@ -279,7 +281,7 @@
 
         <span class="keywordflow">if</span> ((<a name="a19"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, M_LL_CH_NUMBER, &amp;chNbr)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat M_LL_CH_NUMBER"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat M_LL_CH_NUMBER"</span>);
             <span class="keywordflow">goto</span> abort;
         }
 
@@ -294,28 +296,28 @@
             <span class="comment">/* select channel */</span>
             <span class="keywordflow">if</span>( (<a name="a20"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(G_Path, M_MK_CH_CURRENT, ch)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"setstat M_MK_CH_CURRENT"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"setstat M_MK_CH_CURRENT"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
 
             <span class="comment">/* get in voltage */</span>
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_VOLT_ACT, &amp;in)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_VOLT_ACT"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_VOLT_ACT"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
 
             <span class="comment">/* get lower voltage limit */</span>
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_VOLT_LOW, (int32 *)&amp;G_VoltCh[ch].low)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_VOLT_LOW"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_VOLT_LOW"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
 
             <span class="comment">/* get upper voltage limit */</span>
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_VOLT_HIGH, (int32 *)&amp;G_VoltCh[ch].high)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_VOLT_HIGH"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_VOLT_HIGH"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
 
@@ -351,7 +353,7 @@
 
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, M_LL_CH_NUMBER, &amp;chNbr)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat M_LL_CH_NUMBER"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat M_LL_CH_NUMBER"</span>);
             <span class="keywordflow">goto</span> abort;
         }
 
@@ -364,14 +366,14 @@
         <span class="comment">/* init signal handling */</span>
         <span class="keywordflow">if</span>( UOS_SigInit(NULL) )
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintUosError</a>(<span class="stringliteral">"SigInit"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a9">PrintUosError</a>(<span class="stringliteral">"SigInit"</span>);
             <span class="keywordflow">return</span>(1);
         }
 
         <span class="comment">/* install signal */</span>
         <span class="keywordflow">if</span>( UOS_SigInstall(UOS_SIG_USR1) )
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintUosError</a>(<span class="stringliteral">"SigInstall"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a9">PrintUosError</a>(<span class="stringliteral">"SigInstall"</span>);
             <span class="keywordflow">goto</span> abort;
         }
 
@@ -380,7 +382,7 @@
         <span class="comment">/* install signal for voltage supervision */</span>
         <span class="keywordflow">if</span>( (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(G_Path, XM01BC_VOLT_SIGSET, (int32)UOS_SIG_USR1) &lt; 0))
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_VOLT_SIGSET"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_VOLT_SIGSET"</span>);
             <span class="keywordflow">goto</span> abort;
         }
 
@@ -396,7 +398,7 @@
                 <span class="comment">/* get last supervision error state */</span>
                 <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_VOLT_SVSTATE, &amp;lastSvState)) &lt; 0)
                 {
-                    <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_VOLT_SVSTATE"</span>);
+                    <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_VOLT_SVSTATE"</span>);
                     <span class="keywordflow">goto</span> abort;
                 }
 
@@ -431,7 +433,7 @@
     {
         <span class="keywordflow">if</span>( (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(G_Path, XM01BC_SWCOLDRESET, scr)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_SWCOLDRESET"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_SWCOLDRESET"</span>);
             <span class="keywordflow">goto</span> abort;
         }
     }
@@ -441,7 +443,7 @@
     {
         <span class="keywordflow">if</span>( (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(G_Path, XM01BC_SWRESET, swr)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_SWRESET"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_SWRESET"</span>);
             <span class="keywordflow">goto</span> abort;
         }
     }
@@ -459,7 +461,7 @@
                 errCntrNbr = <a class="code" href="xm01bc__drv_8h.html#a64">XM01BC_NUM_ERR_CNTRS</a>;
             <span class="keywordflow">else</span>
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_NUM_ERRCNTRS"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_NUM_ERRCNTRS"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
         }
@@ -469,7 +471,7 @@
         {
             <span class="keywordflow">if</span>( <a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_00, &amp;val) &lt; 0 )
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_00"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_00"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_00      : %u\n"</span>, (u_int8)val );
@@ -480,7 +482,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_01, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_01"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_01"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_01      : %u\n"</span>, (u_int8)val );
@@ -491,7 +493,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_02, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_02"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_02"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_02      : %u\n"</span>, (u_int8)val );
@@ -502,7 +504,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_03, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_03"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_03"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_03      : %u\n"</span>, (u_int8)val );
@@ -513,7 +515,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_04, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_04"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_04"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_04      : %u\n"</span>, (u_int8)val );
@@ -524,7 +526,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_05, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_05"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_05"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_05      : %u\n"</span>, (u_int8)val );
@@ -535,7 +537,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_06, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_06"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_06"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_06      : %u\n"</span>, (u_int8)val );
@@ -546,7 +548,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_07, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_07"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_07"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_07      : %u\n"</span>, (u_int8)val );
@@ -557,7 +559,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_08, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_08"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_08"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_08      : %u\n"</span>, (u_int8)val );
@@ -568,7 +570,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_09, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_09"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_09"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_09      : %u\n"</span>, (u_int8)val );
@@ -579,7 +581,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_10, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_10"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_10"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_10      : %u\n"</span>, (u_int8)val );
@@ -590,7 +592,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_11, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_11"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_11"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_11      : %u\n"</span>, (u_int8)val );
@@ -601,7 +603,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_12, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_12"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_12"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_12      : %u\n"</span>, (u_int8)val );
@@ -612,7 +614,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_13, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_13"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_13"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_13      : %u\n"</span>, (u_int8)val );
@@ -623,7 +625,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_14, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_14"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_14"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_14      : %u\n"</span>, (u_int8)val );
@@ -634,7 +636,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_15, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_15"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_15"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_15      : %u\n"</span>, (u_int8)val );
@@ -645,7 +647,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_16, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_16"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_16"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_16      : %u\n"</span>, (u_int8)val );
@@ -656,7 +658,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_17, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_17"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_17"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_17      : %u\n"</span>, (u_int8)val );
@@ -667,7 +669,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_18, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_18"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_18"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_18      : %u\n"</span>, (u_int8)val );
@@ -678,7 +680,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_19, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_19"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_19"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_19      : %u\n"</span>, (u_int8)val );
@@ -689,7 +691,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_20, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_20"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_20"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_20      : %u\n"</span>, (u_int8)val );
@@ -700,7 +702,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_21, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_21"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_21"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_21      : %u\n"</span>, (u_int8)val );
@@ -711,7 +713,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_22, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_22"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_22"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_22      : %u\n"</span>, (u_int8)val );
@@ -722,7 +724,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_23, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_23"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_23"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_23      : %u\n"</span>, (u_int8)val );
@@ -733,7 +735,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_24, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_24"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_24"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_24      : %u\n"</span>, (u_int8)val );
@@ -744,7 +746,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_25, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_25"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_25"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_25      : %u\n"</span>, (u_int8)val );
@@ -755,7 +757,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_26, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_26"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_26"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_26      : %u\n"</span>, (u_int8)val );
@@ -766,7 +768,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_27, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_27"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_27"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_27      : %u\n"</span>, (u_int8)val );
@@ -777,7 +779,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_28, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_28"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_28"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_28      : %u\n"</span>, (u_int8)val );
@@ -788,7 +790,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_29, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_29"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_29"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_29              : %u\n"</span>, (u_int8)val );
@@ -799,7 +801,7 @@
         {
             <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERRCNT_30, &amp;val)) &lt; 0)
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_30"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERRCNT_30"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
             printf(<span class="stringliteral">"- XM01BC_ERRCNT_30      : %u\n"</span>, (u_int8)val );
@@ -815,7 +817,7 @@
         printf(<span class="stringliteral">"Clearing error counters...\n"</span>);
         <span class="keywordflow">if</span>( (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(G_Path, XM01BC_ERRCNT_CLR, 0)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_ERRCNT_CLR"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_ERRCNT_CLR"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"done.\n"</span>);
@@ -833,7 +835,7 @@
                 printf(<span class="stringliteral">"Number of Error Counters: Function not supported by driver\n\n"</span>);
             <span class="keywordflow">else</span>
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_NUM_ERRCNTRS"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_NUM_ERRCNTRS"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
         }
@@ -857,7 +859,7 @@
 
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_BLK_FWREV, (int32*)&amp;blk)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_BLK_FWREV"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_BLK_FWREV"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"Firmware rev.           : %c%c.%c%c.%c%c\n"</span>,
@@ -878,7 +880,7 @@
 
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_BLK_FWREV_EXT, (int32*)&amp;blk)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_BLK_FWREV_EXT"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_BLK_FWREV_EXT"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"Firmware rev. (extended): %02u.%02u.%02u\n"</span>, rev[0],rev[1],rev[2]);
@@ -892,7 +894,7 @@
     {
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERR_RST_RSN, &amp;val)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERR_RST_RSN"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERR_RST_RSN"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"Last reset reason       : 0x%02x\n"</span>, (u_int8)val);
@@ -906,7 +908,7 @@
     {
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERR_LAST, &amp;val)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERR_LAST"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERR_LAST"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"Last error              : 0x%02x\n"</span>, (u_int8)val);
@@ -920,7 +922,7 @@
     {
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_ERR_PWR_FLGS, &amp;val)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERR_PWR_FLGS"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_ERR_PWR_FLGS"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"Power failure flags     : 0x%02x\n"</span>, (u_int8)val);
@@ -935,7 +937,7 @@
         printf(<span class="stringliteral">"Clearing failure registers...\n"</span>);
         <span class="keywordflow">if</span>( (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(G_Path, XM01BC_ERR_REG_CLR, 0)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_ERR_REG_CLR"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_ERR_REG_CLR"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"done.\n"</span>);
@@ -949,7 +951,7 @@
     {
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_OPHRS_CNT, &amp;val)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_OPHRS_CNT"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_OPHRS_CNT"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"Operating hours         : %uh\n"</span>, (u_int16)val);
@@ -963,7 +965,7 @@
     {
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_PWRCYCL_CNT, &amp;val)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_PWRCYCL_CNT"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_PWRCYCL_CNT"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"Power cycles            : %u\n"</span>, (u_int16)val);
@@ -977,7 +979,7 @@
     {
         <span class="keywordflow">if</span>( (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(G_Path, XM01BC_LED_CTRL, newLedState)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_LED_CTRL"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_LED_CTRL"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         <span class="comment">/* show new led state */</span>
@@ -991,7 +993,7 @@
     {
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_LED_CTRL, &amp;val)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_LED_CTRL"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_LED_CTRL"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"LED state               : %s\n"</span>, (val ? <span class="stringliteral">"On"</span> : <span class="stringliteral">"Off"</span>) );
@@ -1005,7 +1007,7 @@
     {
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_RESUME_MODE, &amp;val)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_RESUME_MODE"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_RESUME_MODE"</span>);
             <span class="keywordflow">goto</span> abort;
         }
 
@@ -1043,7 +1045,7 @@
             <span class="keywordflow">if</span>( UOS_ErrnoGet() == ERR_LL_UNK_CODE )
                 printf(<span class="stringliteral">"RESET_IN Blocking mode  : Function not supported by driver\n\n"</span>);
             <span class="keywordflow">else</span>
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_RES_IN_MODE"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_RES_IN_MODE"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         <span class="keywordflow">else</span>
@@ -1077,7 +1079,7 @@
     {
         <span class="keywordflow">if</span> ((<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a12">M_getstat</a>(G_Path, XM01BC_EXT_PWR_OK_MODE, &amp;val)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_EXT_PWR_OK_MODE"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_EXT_PWR_OK_MODE"</span>);
             <span class="keywordflow">goto</span> abort;
         }
 
@@ -1112,7 +1114,7 @@
                 printf(<span class="stringliteral">"Detected Hardware ID    : Function not supported by driver\n\n"</span>);
             <span class="keywordflow">else</span>
             {
-                <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_HW_VARIANT"</span>);
+                <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"getstat XM01BC_HW_VARIANT"</span>);
                 <span class="keywordflow">goto</span> abort;
             }
         }
@@ -1131,7 +1133,7 @@
         printf(<span class="stringliteral">"leaving QM-Mode (for production tests only)...\n"</span>);
         <span class="keywordflow">if</span>( (<a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a13">M_setstat</a>(G_Path, XM01BC_WDOG_ARM, 0)) &lt; 0)
         {
-            <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_WDOG_ARM"</span>);
+            <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"setstat XM01BC_WDOG_ARM"</span>);
             <span class="keywordflow">goto</span> abort;
         }
         printf(<span class="stringliteral">"done.\n"</span>);
@@ -1148,20 +1150,20 @@
     }
 
     <span class="keywordflow">if</span>( <a name="a23"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/mdis__api_8c.html#a9">M_close</a>(G_Path) &lt; 0 )
-        <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="stringliteral">"close"</span>);
+        <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="stringliteral">"close"</span>);
 
     <span class="keywordflow">return</span>(0);
 }
 
 <span class="comment">/********************************* PrintMdisError **************************/</span>
-<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="xm01bc__ctrl_8c.html#a7">PrintMdisError</a>(<span class="keywordtype">char</span> *info)
+<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintMdisError</a>(<span class="keywordtype">char</span> *info)
 {
     printf(<span class="stringliteral">"*** can't %s: %s\n"</span>, info, <a name="a24"></a><a class="codeRef" doxygen="mdis_api.tag:../../../../../LIBSRC/MDIS_API/DOC/html/" href="../../../../../LIBSRC/MDIS_API/DOC/html/m__errstr_8c.html#a0">M_errstring</a>(UOS_ErrnoGet()));
     printf(<span class="stringliteral">"\n"</span>);
 }
 
 <span class="comment">/********************************* PrintUosError ***************************/</span>
-<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="xm01bc__ctrl_8c.html#a8">PrintUosError</a>(<span class="keywordtype">char</span> *info)
+<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="xm01bc__ctrl_8c.html#a9">PrintUosError</a>(<span class="keywordtype">char</span> *info)
 {
     printf(<span class="stringliteral">"*** can't %s: %s\n"</span>, info, UOS_ErrString(UOS_ErrnoGet()));
     printf(<span class="stringliteral">"\n"</span>);
@@ -1174,8 +1176,7 @@
 <div class="footer">
 <!-- Footer -->
 	<p class="footer">
-	Generated for XM01BC MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>.<br>
-	Copyright &copy; 2019 <a href="http://www.men.de">MEN Mikro Elektronik GmbH</a>. All Rights Reserved.
+	Generated for XM01BC MDIS Driver using <a href="http://www.doxygen.org">doxygen</a>. All Rights Reserved.
 	</p>
 </div>
 

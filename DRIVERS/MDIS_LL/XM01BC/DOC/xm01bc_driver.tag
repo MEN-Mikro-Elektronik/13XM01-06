@@ -160,20 +160,26 @@
     <member kind="function" static="yes">
       <type>void</type>
       <name>usage</name>
-      <anchor>a0</anchor>
+      <anchor>a1</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>void</type>
       <name>PrintMdisError</name>
-      <anchor>a1</anchor>
+      <anchor>a2</anchor>
       <arglist>(char *info)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>main</name>
-      <anchor>a2</anchor>
+      <anchor>a3</anchor>
       <arglist>(int argc, char *argv[])</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>const char</type>
+      <name>IdentString</name>
+      <anchor>a0</anchor>
+      <arglist>[]</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -195,37 +201,43 @@
     <member kind="function" static="yes">
       <type>void</type>
       <name>usage</name>
-      <anchor>a6</anchor>
+      <anchor>a7</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>void</type>
       <name>PrintMdisError</name>
-      <anchor>a7</anchor>
+      <anchor>a8</anchor>
       <arglist>(char *info)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>void</type>
       <name>PrintUosError</name>
-      <anchor>a8</anchor>
+      <anchor>a9</anchor>
       <arglist>(char *info)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>main</name>
-      <anchor>a9</anchor>
+      <anchor>a10</anchor>
       <arglist>(int argc, char *argv[])</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>const char</type>
+      <name>IdentString</name>
+      <anchor>a2</anchor>
+      <arglist>[]</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>MDIS_PATH</type>
       <name>G_Path</name>
-      <anchor>a2</anchor>
+      <anchor>a3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>@0</type>
       <name>G_VoltCh</name>
-      <anchor>a5</anchor>
+      <anchor>a6</anchor>
       <arglist>[MAX_VOLT_CH]</arglist>
     </member>
     <member kind="variable">
@@ -308,116 +320,122 @@
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_Init</name>
-      <anchor>a9</anchor>
+      <anchor>a10</anchor>
       <arglist>(DESC_SPEC *descSpec, OSS_HANDLE *osHdl, MACCESS *ma, OSS_SEM_HANDLE *devSemHdl, OSS_IRQ_HANDLE *irqHdl, LL_HANDLE **llHdlP)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_Exit</name>
-      <anchor>a10</anchor>
+      <anchor>a11</anchor>
       <arglist>(LL_HANDLE **llHdlP)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_Read</name>
-      <anchor>a11</anchor>
+      <anchor>a12</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, int32 *value)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_Write</name>
-      <anchor>a12</anchor>
+      <anchor>a13</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, int32 value)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_SetStat</name>
-      <anchor>a13</anchor>
+      <anchor>a14</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, int32 code, INT32_OR_64 value32_or_64)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_GetStat</name>
-      <anchor>a14</anchor>
+      <anchor>a15</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, int32 code, INT32_OR_64 *value32_or_64P)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_BlockRead</name>
-      <anchor>a15</anchor>
+      <anchor>a16</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, void *buf, int32 size, int32 *nbrRdBytesP)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_BlockWrite</name>
-      <anchor>a16</anchor>
+      <anchor>a17</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 ch, void *buf, int32 size, int32 *nbrWrBytesP)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_Irq</name>
-      <anchor>a17</anchor>
+      <anchor>a18</anchor>
       <arglist>(LL_HANDLE *llHdl)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>XM01BC_Info</name>
-      <anchor>a18</anchor>
+      <anchor>a19</anchor>
       <arglist>(int32 infoType,...)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>char *</type>
       <name>Ident</name>
-      <anchor>a19</anchor>
+      <anchor>a20</anchor>
       <arglist>(void)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>Cleanup</name>
-      <anchor>a20</anchor>
+      <anchor>a21</anchor>
       <arglist>(LL_HANDLE *llHdl, int32 retCode)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>void</type>
       <name>AlarmHandler</name>
-      <anchor>a21</anchor>
+      <anchor>a22</anchor>
       <arglist>(void *arg)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>SMBusWriteByte</name>
-      <anchor>a22</anchor>
+      <anchor>a23</anchor>
       <arglist>(LL_HANDLE *llHdl, u_int32 flags, u_int8 data)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>SMBusWriteByteData</name>
-      <anchor>a23</anchor>
+      <anchor>a24</anchor>
       <arglist>(LL_HANDLE *llHdl, u_int32 flags, u_int8 cmdAddr, u_int8 data)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>SMBusReadByteData</name>
-      <anchor>a24</anchor>
+      <anchor>a25</anchor>
       <arglist>(LL_HANDLE *llHdl, u_int32 flags, u_int8 cmdAddr, u_int8 *data)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>SMBusWriteWordData</name>
-      <anchor>a25</anchor>
+      <anchor>a26</anchor>
       <arglist>(LL_HANDLE *llHdl, u_int32 flags, u_int8 cmdAddr, u_int16 data)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>int32</type>
       <name>SMBusReadWordData</name>
-      <anchor>a26</anchor>
+      <anchor>a27</anchor>
       <arglist>(LL_HANDLE *llHdl, u_int32 flags, u_int8 cmdAddr, u_int16 *data)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>__XM01BC_GetEntry</name>
-      <anchor>a27</anchor>
+      <anchor>a28</anchor>
       <arglist>(LL_ENTRY *drvP)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>const char</type>
+      <name>IdentString</name>
+      <anchor>a9</anchor>
+      <arglist>[]</arglist>
     </member>
   </compound>
   <compound kind="file">
