@@ -114,14 +114,6 @@
     </tr>
     </table>
 
-    \n \subsection xm01bc_min   Minimum descriptor
-    xm01bc_min.dsc (see Examples section)\n
-    Demonstrates the minimum set of options necessary for using the driver.
-
-    \n \subsection xm01bc_max   Maximum descriptor
-    xm01bc_max.dsc (see Examples section)\n
-    Shows all possible configuration options for this driver.
-
     \n \section codes XM01BC specific Getstat/Setstat codes
 	For the watchdog functionality, the driver supports a subset of the WDOG
 	Getstat/Setstat codes (defined in wdog.h):
@@ -146,8 +138,6 @@
 /** \example xm01bc_ctrl.c */
 /** \example wdog_test.c */
 /** \example wdog_simp.c */
-/** \example xm01bc_min.dsc */
-/** \example xm01bc_max.dsc */
 
 /*! \page xm01bcdummy MEN logo
   \menimages
