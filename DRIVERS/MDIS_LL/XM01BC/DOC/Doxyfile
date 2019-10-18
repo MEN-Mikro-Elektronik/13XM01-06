@@ -1,7 +1,7 @@
 @INCLUDE_PATH = $(MEN_DOXYGENTMPL)
 @INCLUDE = DoxyfileCommon
 
-#MDIS_COMMIT=06aff0a71fd5ca825abdc6c1acc40d4dd4a0fd23
+#MDIS_COMMIT=e35b04c4ae4d22322402af34b57276ec79cfc771
 
 PROJECT_NAME           = "XM01BC MDIS Driver"
 INPUT                  = ../DRIVER/COM \
