@@ -14,7 +14,7 @@
  */
  /*
  *---------------------------------------------------------------------------
- * Copyright (c) 2008-2019, MEN Mikro Elektronik GmbH
+ * Copyright 2008-2019, MEN Mikro Elektronik GmbH
  ****************************************************************************/
 /*
 * This program is free software: you can redistribute it and/or modify
@@ -108,7 +108,7 @@ static void usage(void)
 	printf("\n");
 	printf("  -q          exit QM-Mode (for production tests only)   \n");
 	printf("\n");
-	printf("Copyright (c) 2008-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
+	printf("Copyright 2008-2019, MEN Mikro Elektronik GmbH\n%s\n", IdentString);
 	printf("\n");
 	printf("\n");
 }
